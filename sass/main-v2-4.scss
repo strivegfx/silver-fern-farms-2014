@@ -1,0 +1,1869 @@
+@import "compass/css3";
+
+// @import url(http://fonts.googleapis.com/css?family=Economica);
+// @import url(http://fonts.googleapis.com/css?family=Six+Caps);
+
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:300);
+// font-family: "Roboto Slab", serif;
+
+@import url(http://fonts.googleapis.com/css?family=Yeseva+One);
+// font-family: "Yeseva One", cursive;
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:300);
+// font-family: "Roboto", sans-serif;
+
+*, *:after, *:before {
+	@include box-sizing(border-box);
+}
+
+.clear-fix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+// generic values
+$ani: 0.25s;
+$padS: 20px;
+$padB: 50px;
+
+// color values
+$drkGray: #333333;
+$medGray: #4d4d4d;
+$lytGray: #cccccc;
+$bulGray: lighten(black, 50%);
+
+$medBrown: #9b7e54;
+$drkBrown: #553d1a;
+
+$gold: #a57b51;
+// $gold: #917c4f;
+
+@mixin vendorize($property, $value) {
+	-webkit-#{$property}: $value;
+	-moz-#{$property}: $value;
+	-ms-#{$property}: $value;
+	-o-#{$property}: $value;
+	#{$property}: $value;
+}
+
+@mixin pseudo{
+	position: absolute;
+	display: block;
+	content: "";
+}
+
+@mixin keyframes($aniName){
+
+    @-webkit-keyframes $aniName{
+        @content;
+    }
+    @-moz-keyframes $aniName{
+        @content;
+    }
+    @-o-keyframes $aniName{
+        @content;
+    }
+    @keyframes $aniName{
+        @content;
+    }
+}
+
+html, body{
+	//width: 940px;
+	height: 100%;
+}
+
+body{
+	//position: relative;
+	font: {
+		family: "Roboto", sans-serif;
+		// family: arial, sans-serif;
+		//weight: 300;
+		//size: 16px;
+		//style: normal;
+	}
+	line-height: 1.4;
+}
+
+h2{
+	color: $medGray;
+	font: {
+		family: "Yeseva One", cursive;
+		weight: 400;
+		size: 40px;
+		style: italic;
+	}
+	margin: 0;
+	padding: 0;
+	text-transform:uppercase;
+}
+
+h3{
+	color: $medGray;
+	font: {
+		family: "Yeseva One", cursive;
+		weight: 400;
+		size: 18px;
+		style: italic;
+	}
+	margin: 0;
+	padding: 0;
+	text-transform:uppercase;
+}
+
+h4{
+	color: $drkGray;
+	font: {
+		weight: 900;
+		size: 14px;
+	}
+	text-transform:uppercase;
+	margin: 0;
+	padding: 0;
+}
+
+h5{
+	color: $gold;
+	font: {
+		family: "Yeseva One", cursive;
+		weight: 400;
+		size: 46px;
+		style: italic;
+	}
+	margin: 0;
+	padding: 0;
+	text: {
+		align: center;
+		transform:uppercase;
+	}
+}
+
+h6{
+	color: $gold;
+	font: {
+		family: "Roboto Slab", serif;
+		weight: 900;
+		size: 25px;
+	}
+	margin: 20px 0 0 0;
+	padding: 0;
+}
+
+.oneWord{
+	white-space: nowrap;
+}
+
+.gold{
+	color: $gold;
+}
+
+.sff-wrapper{
+	position: relative;
+	width: 940px;
+	margin: 0 auto 0 auto;
+
+	/*&:before, &:after{
+		@include pseudo;
+		top: 0;
+		width: 160px;
+		height: 100%;
+		background: {
+			image: url(../img/gutter-texture.jpg);
+			repeat: repeat-y;
+		}
+	}
+
+	&:before{
+		left: -160px;
+	}
+
+	&:after{
+		right: -160px;
+	}*/
+}
+
+.overline{
+	border-top: 1px solid $lytGray;
+	padding-top: $padS !important;
+}
+
+.underline{
+	border-bottom: 1px solid $lytGray;
+	//margin: 0 $padB 0 $padB;
+}
+
+.expanded-intro{
+	color: $gold;
+	font: {
+		family: "Roboto Slab", serif;
+		weight: 400;
+		size: 20px;
+		style: normal;
+	}
+	//margin: 0 $padB 0 $padB;
+	text: {
+		align: center;
+		// transform:uppercase
+	}
+}
+
+.bold-cta{
+	color: $medGray;
+	font: {
+		weight: 900;
+		size: 18px;
+	}
+	padding: 0 0 $padS 0;
+	text-align: center;
+}
+
+.intro{
+	position: relative;
+	padding: 250px $padB ($padB - 20px) $padB;
+	background: {
+		image: url(../img/header.jpg);
+		repeat: no-repeat;
+		position: center top;
+	}
+
+	/*&:before{
+		@include pseudo;
+		top: 325px;
+		left: 0;
+		width: 100%;
+		height: 100px;
+		background: {
+			image: url(../img/generic-sprite.jpg);
+			repeat: no-repeat;
+			position: 0 -1125px;
+		}
+	}*/
+
+	&:after{
+		@include pseudo;
+		top: 170px;
+		left: 0;
+		width: 100%;
+		height: 80px;
+		background: {
+			image: url(../img/sff-awards-logo.png);
+			repeat: no-repeat;
+			position: center center;
+		}
+	}
+}
+
+.intro-container{
+	width: 840px;
+	margin: 0 $padB 0 $padB;
+
+	.description{
+		margin: $padS 0 0 0;
+	}
+}
+
+.vert-divider{
+	position: absolute;
+	width: 1px !important;
+	height: 100%;
+	left: 50%;
+	background-color: $drkGray;
+}
+
+.description{
+	color: #4c4c4c;
+	position: relative;
+	list-style-type: none;
+	margin: $padB 0 0 0;
+	padding: 0;
+	font-size: 15px;
+	text-align: center;
+
+	li{
+		top: 0;
+		width: 50%;
+		float: left;
+		//display: inline-block;
+
+		&.left{
+			padding: 0 $padS $padS 0;
+			//border-right: 1px solid $drkGray;
+		}
+
+		&.right{
+			padding: 0 0 $padS $padS;
+		}
+	}
+}
+
+ul.call-to-action{
+	list-style-type: none;
+	margin: 0;
+	padding: $padS 0 0 0;
+	text-align: center;
+	color: $medGray;
+
+	.question{
+		color: black;
+		font: {
+			family: "Roboto Slab", serif;
+			size: 16px;
+		}
+		margin: 0 0 $padS 0;
+	}
+}
+
+.feature-image{
+	//cursor: pointer;
+	background: {
+		image: url(../img/generic-sprite.jpg);
+		repeat: no-repeat;
+		position: 0 -560px;
+	}
+	height: 200px;
+	margin: $padS $padB $padB $padB;
+	position: relative;
+	width: 840px;
+
+	&:after{
+		@include pseudo;
+		width: 100%;
+		height: 20px;
+		top: 100%;
+		left: 0;
+		background: {
+			image: url(../img/transparent-sprite.png);
+			repeat: no-repeat;
+			position: 0 -185px;
+		}		
+	}
+
+	.clip-container{
+		//display: none;
+		position: absolute;
+		overflow: hidden;
+		width: 840px;
+		height: 200px;
+		left: 0;
+		top: 0;
+
+		.logo-snippet{
+			position: absolute;
+			background: {
+				image: url(../img/generic-sprite.jpg);
+				repeat: no-repeat;
+			}
+
+			&.snippet0{
+				background-position: 0 (0 - 350px);
+				left: -117px;
+				top: 0;
+				width: 117px;
+				height: 200px;
+			}
+
+			&.snippet1{
+				background-position: -117px (0 - 350px);
+				left: 117px;
+				top: -70px;
+				width: 173px;
+				height: 70px;
+			}
+
+			&.snippet2{
+				background-position: -117px (-70px - 350px);
+				left: 117px;
+				top: 70px + 130px;
+				width: 173px;
+				height: 130px;
+			}
+
+			&.snippet3{
+				background-position: -290px (0 - 350px);
+				left: 290px;
+				top: -100px;
+				width: 100px;
+				height: 100px;
+			}
+
+			&.snippet4{
+				background-position: -290px (-100px - 350px);
+				left: 290px;
+				top: 100px + 100px;
+				width: 200px;
+				height: 100px;
+			}
+
+			&.snippet5{
+				background-position: -390px (0 - 350px);
+				left: 390px;
+				top: -100px;
+				width: 100px;
+				height: 100px;
+			}
+
+			&.snippet6{
+				background-position: -490px (0 - 350px);
+				left: 490px;
+				top: 200px;
+				width: 200px;
+				height: 200px;
+			}
+
+			&.snippet7{
+				background-position: -690px (0 - 350px);
+				left: 690px + 150px;
+				top: 0;
+				width: 150px;
+				height: 150px;
+			}
+
+			&.snippet8{
+				background-position: -690px (-150px - 350px);
+				left: 690px;
+				top: 150px + 50px;
+				width: 150px;
+				height: 50px;
+			}
+		}
+	}
+}
+
+.winner-container{
+	margin: $padS $padB $padB $padB;
+	position: relative;
+	width: 840px;
+
+	h2{
+		color: $medBrown;
+		font: {
+			size: 34px;
+		}
+		min-width: 840px !important; // IE8 bug fix
+		max-width: 840px !important; // IE8 bug fix
+		width: 840px !important; // IE8 bug fix
+	}
+
+	.content{
+		position: relative;
+		min-height: 450px;
+
+		&:before{
+			@include pseudo;
+			background-color: white;
+			height: 350px;
+			width: 250px;
+			@include box-shadow(0 0 10px 0 $lytGray);
+			behavior: url(css3pie/PIE.htc);
+		}
+	}
+
+	.image-container{
+		$wth: 250px;
+		$hgt: 350px;
+		height: 500px;
+		left: 0;
+		overflow-x: hidden;
+		position: absolute;
+		top: 0;
+
+		.medal{
+			background: {
+				image: url(../img/transparent-sprite.png);
+				position: 0 -305px;
+				repeat: no-repeat;
+			}
+			height: 160px;
+			left: 0;
+			position: absolute;
+			top: 285px;
+			width: $wth;
+			z-index: 50;
+		}
+
+		.slider{
+			background-color: black;
+			border-bottom: 2px solid $gold;
+			height: $hgt + 2; // +2 = border addition
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			width: $wth;
+			z-index: 1;
+
+			li{
+				left: 0;
+				position: absolute;
+				height: $hgt;
+				top: 0;
+				width: $wth;
+			}
+
+			.portrait{
+				background: {
+					image: url(../img/generic-sprite.jpg);
+					position: 0 0;
+					repeat: no-repeat;
+				}
+
+				.dark-overaly{
+					background-color: black;
+					height: $hgt;
+					left: 0;
+					position: absolute;
+					top: 0;
+					width: $wth;
+					@include opacity(0);
+				}
+			}
+
+			.meal{
+				background: {
+					image: url(../img/generic-sprite.jpg);
+					position: -250px 0;
+					repeat: no-repeat;
+				}
+				left: $wth;
+			}
+		}
+
+		.selector{
+			$wth: 16px;
+			$pad: 8px;
+			background-color: white;
+			border: 1px solid $gold;
+			list-style-type: none;
+			margin: 80px 0 0 95px;
+			padding: ($pad / 2) 0;
+			position: relative;
+			width: (($wth + 2) * 2) + ($pad * 3);
+			z-index: 100;
+			@include border-radius($wth);
+			behavior: url(css3pie/PIE.htc);
+
+			li{
+				background-color: rgb(255, 255, 255);
+				border: 1px solid $gold;
+				cursor: pointer;
+				float: left;
+				height: $wth + 1;
+				margin: 0 0 0 $pad;
+				width: $wth + 1;
+				@include border-radius(50%);
+				behavior: url(css3pie/PIE.htc);
+			}
+
+			li[data-state="active"]{
+				background-color: $gold;
+			}
+		}
+	}
+
+	.winner-information{
+		margin: 0 0 0 250px;
+		padding: 0 0 0 $padB;
+		
+		p{
+			text-align: left;
+		}
+
+		.expanded-intro{
+			width: 540px !important; // IE8 bug fix
+		}
+	}
+}
+
+ul.finalists-container{
+	font-size: 14px;
+	list-style-type: none;
+	margin: 0 0 $padS 0;
+	//overflow-x: hidden;
+	padding: 0 $padB 0 $padB;
+	width: 940px;
+
+	li.nominee{
+		display: inline-block;
+		cursor: pointer;
+		padding: $padS $padS $padS (80px + $padS);
+		position: relative;
+		width: 50%;
+
+		.image{
+			z-index: 1;
+			background: {
+				image: url(../img/finalists-sprite-small.jpg);
+				repeat: no-repeat;
+			};
+			height: 80px;
+			left: 0;
+			position: absolute;
+			top: $padS;
+			width: 80px;
+			@include box-shadow(0 5px 10px 0 $lytGray);
+		}
+
+		.shadow{
+			z-index: 0;
+			position: absolute;
+			left: 0;
+			top: 100px;
+			background: {
+				image: url(../img/generic-sprite.jpg);
+				repeat: no-repeat;
+				position: -54px -1090px;
+			}
+			width: 80px;
+			height: 20px;
+			@include opacity(0.5);
+		}
+
+		.copy-block{
+			height: 100px;
+			overflow: hidden;
+			position: relative;
+
+			h3.restaurant{
+				color: $medBrown;
+				font-size: 16px;
+				margin: 0 0 $padS / 2 0;
+			}
+
+			.gradient{
+				position: absolute;
+				bottom: 0;
+				height: $padB;
+				left: 0;
+				width: 100%;
+				@include background-image(linear-gradient(bottom, white, rgba(white, 0)));
+			}
+
+			/*&:after{
+				@include pseudo;
+				bottom: 0;
+				height: $padB;
+				left: 0;
+				width: 100%;
+				@include background-image(linear-gradient(bottom, white, rgba(white, 0)));
+			}*/
+		}
+	}
+}
+
+.map-container{
+	position: relative;
+	height: 400px;
+	margin: $padS 0 0 0;
+}
+
+.rnd-btn{
+	cursor: pointer;
+	width: $padB;
+	height: $padB;
+	background: {
+		image: url(../img/transparent-sprite.png);
+		repeat: no-repeat;
+		//position: 0 -125px;
+		color: $medGray;
+	}
+	border: 1px solid $drkGray;
+	@include border-radius(50%);
+	behavior: url(css3pie/PIE.htc);
+}
+
+// ----------------------------------------
+
+.region-map{
+	$wth: 270px;
+	$hgt: 390px;
+
+	z-index: 200;
+	position: absolute;
+	top: -15px;
+	left: 80px;
+	width: $wth;
+	height: $hgt;
+
+	#paper{ // #ID used to populate SVG / VML data with Raphael.js...
+		z-index: 50;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: $wth;
+		height: $hgt;
+
+		//svg{
+		//	cursor: pointer;
+		//}
+	}
+
+	ul.land-mass{
+		z-index: 25;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: $wth;
+		height: $hgt;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		background: {
+			image: url(../img/map-assets.png);
+			repeat: no-repeat;
+			position: 0 0;
+		}
+
+		li{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: $wth;
+			height: $hgt;
+			@include opacity(0);
+
+			background: {
+				image: url(../img/map-assets.png);
+				repeat: no-repeat;
+				//position: -270px 0;
+			}
+
+			&[data-num="0"]{
+				background-position: -270px 0;
+			}
+
+			&[data-num="1"]{
+				background-position: -540px 0;
+			}
+
+			&[data-num="2"]{
+				background-position: -810px 0;
+			}
+
+			&[data-num="3"]{
+				background-position: -1080px 0;
+			}
+
+			&[data-num="4"]{
+				background-position: -1350px 0;
+			}
+		}
+	}
+}
+
+.region-list{
+	$rad: 10px;
+	z-index: 200;
+	position: absolute;
+	border: 1px solid $gold;
+	@include border-radius($rad);
+	left: 45%;
+	top: 25%;
+	width: 400px;
+	background-color: white;
+	padding: 30px 10px 30px 10px;
+	//@include transform(translate(0, -70%)); // center vertically
+	behavior: url(css3pie/PIE.htc);
+
+	&:before, &:after{
+		@include pseudo;
+		left: 0;
+		width: 100%;
+		background: {
+			image: url(../img/transparent-sprite.png);
+			repeat: no-repeat;
+		}
+	}
+
+	/* &:before{
+		bottom: 100%;
+		height: 30px;
+		background-position: 0 0;
+	} */
+
+	&:after{
+		top: 100%;
+		height: 20px;
+		background-position: 0 -40px;
+	}
+
+	li{
+		position: relative;
+		display: inline-block;
+		//cursor: pointer; // this is sorted out via javascript
+		width: 50%;
+		padding: 0 10px 0 40px;
+		color: $medGray;
+		font: {
+			family: "Roboto Slab", serif;
+			weight: 400;
+			size: 18px;
+			style: normal;
+		}
+		// text-transform:uppercase;
+
+		&:before{
+			@include pseudo;
+			top: 50%;
+			margin: -8px 0 0 0;
+			left: 10px;
+			width: 9px;
+			height: 9px;
+			border: 1px solid $bulGray;
+			@include border-radius(50%);
+		}
+	}
+}
+
+// ----------------------------------------
+.white-out{
+	z-index: 900;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(white, 0.95);
+}
+
+
+.modal{
+	$wth: 940px;
+	z-index: 1000;
+	display: none;
+	position: absolute;
+	width: $wth;
+	min-height: 200+ ($padS * 2);
+	//margin: $padB $padB 0 $padB;
+	//padding: $padB;
+	//border: 1px solid lighten($lytGray, 10%);
+	background-color: rgba(white, 0.95);
+	//@include border-radius($padS);
+	//@include box-shadow(0 0 30px 0 rgba(black, 0.25));
+	//@include opacity(0);
+	//behavior: url(css3pie/PIE.htc);
+
+	.top-fade, .bottom-fade{
+		pointer-events: none;
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 150px;
+	}
+
+	.top-fade{
+		bottom: 100%;
+		@include background-image(linear-gradient(bottom, rgba(white, 0.95), rgba(white, 0)));
+	}
+
+	.bottom-fade{
+		top: 100%;
+		@include background-image(linear-gradient(top, rgba(white, 0.95), rgba(white, 0)));
+	}
+
+	/*&:before{
+		@include pseudo;
+		width: 100%;
+		height: 20px;
+		top: 100%;
+		left: 0;
+		background: {
+			image: url(../img/transparent-sprite.png);
+			repeat: no-repeat;
+			position: 0 -185px;
+		}
+	}*/
+
+	ul.buttons{
+		position: absolute;
+		right: $padS;
+		top: $padS;
+		width: 100%;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+
+		.rnd-btn{
+			float: right;
+		}
+
+		.left{
+			display: none; // will be initially hidden so that when the random items show they cannot be scrolled through - but will ne showen once a region has be selected
+			background-position: 0 -125px;
+			@include box-shadow(-2px 5px 11px 0 rgba(0, 0, 0, 0.15));
+		}
+
+		.right{
+			display: none; // will be initially hidden so that when the random items show they cannot be scrolled through - but will ne showen once a region has be selected
+			background-position: -50px -125px;
+			margin: 0 $padS 0 $padS;
+			@include box-shadow(-3px 6px 13px 0 rgba(0, 0, 0, 0.25));
+		}
+
+		.close{
+			background-position: -100px -125px;
+			@include box-shadow(-4px 7px 15px 0 rgba(0, 0, 0, 0.35));
+		}
+	}
+}
+
+.data{
+	position: relative;
+	margin: 98px 0 $padS 290px;
+	width: 650px;
+	//min-height: 550px; // making room for the double images in the finalist content (now placed via jquery so that the entries listing are not too long)
+	padding: 0 $padS 0 30px;
+	border-left: 1px solid $lytGray;
+
+	.main-heading{
+		color: $drkGray;
+		font: {
+			family: "Roboto Slab", serif;
+			weight: 900;
+			size: 36px;
+		}
+		margin: 0;
+		padding: 0;
+	}
+
+	.image{
+		z-index: 1;
+		position: absolute;
+		background: {
+			position: center center;
+			repeat: no-repeat;
+		}
+		border: 2px solid white;
+		@include border-radius(50% 10% 50% 50%);
+		@include box-shadow(0 5px 15px 0 rgba(0, 0, 0, 0.25));
+		height: 230px;
+		margin-right: 35px;
+		right: 100%;
+		top: 10px;
+		width: 230px;
+		behavior: url(css3pie/PIE.htc);
+		
+		&.logo{
+			background-image: url(../img/sketch-sprite-large.png);
+			top: -80px;
+			left: -270px;
+			width: 250px;
+			height: 250px;
+
+			&.finalist{
+				top: 330px;
+			}
+
+			&:before{
+				left: 30px;
+				bottom: 50px;
+			}
+		}
+
+		&.dish, &.chef{
+			background-image: url(../img/finalists-sprite-large.jpg);
+			left: -270px;
+			width: 250px;
+			@include border-radius(5px);
+			behavior: url(css3pie/PIE.htc);
+
+			&:before{
+				left: 30px;
+				bottom: -30px;
+			}
+		}
+
+		&.dish{
+			height: 250px;
+			top: 550px;
+		}
+
+		&.chef{
+			height: 350px;
+			top: 10px;
+			//top: 450px;
+		}
+
+		/*&.finalist{
+			background: {
+				//color: red;
+				image: url(../img/generic-sprite.jpg);
+				position: 0 -270px;
+				repeat: no-repeat;
+			}
+			height: 70px;
+			left: -270px;
+			top: 300px;
+			width: 250px;
+		}*/
+
+		&:before{
+			@include pseudo;
+			width: 190px;
+			height: 30px;
+			background: {
+				image: url(../img/transparent-sprite.png);
+				repeat: no-repeat;
+				position: -630px 0;
+				// color: red;
+			}
+			margin-left: 15px;
+			top: 105%;
+		}
+
+		&[data-sprite="cervena-venison"]{
+			background-position: (0 * 250px) center;
+
+			&:before{
+				bottom: 30px;
+			}
+		}
+
+		&[data-sprite="silere"]{
+			background-position: (-1 * 250px) center;
+
+			&:before{
+				bottom: 30px;
+			}
+		}
+
+		&[data-sprite="angus"]{
+			background-position: (-2 * 250px) center;
+
+			&:before{
+				bottom: 40px;
+			}
+		}
+
+		&[data-sprite="hereford"]{
+			background-position: (-3 * 250px) center;
+
+			&:before{
+				bottom: 40px;
+			}
+		}
+
+		&[data-sprite="reserve"]{
+			background-position: (-4 * 250px) center;
+		}
+
+		&[data-sprite="sff-beef"]{
+			background-position: (-5 * 250px) center;
+		}
+
+		&[data-sprite="sff-venison"]{
+			background-position: (-6 * 250px) center;
+		}
+
+		&[data-sprite="sff-lamb"]{
+			background-position: (-7 * 250px) center;
+		}
+	}
+
+	.finalist-chef, .finalist-dish, .finalist-judge{
+		color: $medBrown;
+	}
+
+	.finalist-restaruent{
+		color: $medGray;
+		padding: 0 0 ($padS / 2) 0;
+
+		.website{
+			color: $lytGray;
+			text-decoration: none;
+
+			&:hover{
+				color: $medBrown;
+			}
+		}
+	}
+
+	h2{
+		font-family: "Roboto Slab", serif;
+	}
+
+	h3{
+		padding: $padS 0 0 0;
+		color: $medBrown;
+	}
+
+	.finalist-bio, .judge-details, .finalist-details{
+		color: $medGray;
+	}
+
+	.judge-details{
+		color: $medBrown;
+		display: block;
+		font-style: italic;
+		position: relative;
+
+		strong{
+			color: $drkBrown;
+			display: inline-block;
+		}
+	}
+
+	.course, .title{
+		color: $lytGray;
+	}
+
+	.bullet{
+		position: relative;
+		padding: 0 0 0 $padS;
+
+		&:before{
+			@include pseudo;
+			left: 0;
+			top: 7px;
+			width: 9px;
+			height: 9px;
+			border: 1px solid $bulGray;
+			@include border-radius(50%);
+		}
+	}
+
+	ul{
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+
+		.name{
+			padding: 0 0 ($padS/2) $padS;
+			font: {
+				weight: 900;
+				size: 16px;
+				//style: bold;
+			}
+		}
+
+		.break{
+			padding: 0 0 ($padS/2) 0;
+		}
+
+		.extra-address, .phone, .web{
+			padding: 0 0 ($padS/2) $padS;
+		}
+
+		.web .address{
+			color: $gold;
+			text-decoration: none;
+		}
+	}
+}
+
+// ----------------------------------------
+
+.slider-container{
+	$wth: 840px;
+	$rad: 10px;
+	position: absolute;
+	//overflow: hidden;
+	background-color: gray;
+	border: 1px solid $gold;
+	@include border-radius($rad);
+	top: 30px;
+	left: 0;
+	width: $wth;
+	height: 300px;
+	margin: 0 $padB 0 $padB;
+	background: {
+		image: url(../img/map-bg.jpg);
+		repeat: no-repeat;
+		position: center center;
+	}
+	behavior: url(css3pie/PIE.htc);
+
+	/*.footer-shell{
+		z-index: 150;
+		position: absolute;
+		height: 45px;
+		width: 100%;
+		left: 0;
+		bottom: 0;
+		background: {
+			//image: url(../img/transparent-sprite.png);
+			position: 0 -70px;
+			repeat: no-repeat;
+		}
+	}*/
+
+	&:after{
+		z-index: 150;
+		@include pseudo;
+		width: 100%;
+		height: 20px;
+		top: 100%;
+		left: 0;
+		background: {
+			image: url(../img/transparent-sprite.png);
+			repeat: no-repeat;
+			position: 0 -185px;
+		}		
+	}
+
+	/*&:before{
+		z-index: 150;
+		@include pseudo;
+		width: $wth;
+		height: 20px;
+		left: 0;
+		bottom: 100%;
+		background: {
+			image: url(../img/generic-sprite.jpg);
+			position: 0 -1235px;
+			repeat: no-repeat;
+		}
+	}*/
+
+	/*.overlay{
+		z-index: 100;
+		position: absolute;
+		background-color: white;
+		width: $wth;
+		height: 400px;
+		left: 0;
+		top: 0;
+		@include opacity(0.75);
+	}*/
+}
+
+/*.slider-images{
+	$wth: 900px;
+
+	position: relative;
+	//overflow: hidden;
+	width: $wth * 5;
+	height: 400px;
+	background-color: gray;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	background: {
+		image: url(../img/generic-sprite.jpg);
+		position: 0 -180px;
+		repeat: no-repeat;
+	}
+
+	li{
+		position: absolute;
+		display: inline-block;
+		background: {
+			image: url(../img/slider-img-sprite.jpg);
+			repeat: no-repeat;
+		}
+		width: $wth;
+		height: 400px;
+
+		&[data-num="0"]{
+			background-position: 0 0;
+			left: 0;
+		}
+
+		&[data-num="1"]{
+			background-position: $wth * -1 0;
+			left: $wth;
+		}
+
+		&[data-num="2"]{
+			background-position: $wth * -2 0;
+			left: $wth;
+		}
+
+		&[data-num="3"]{
+			background-position: $wth * -3 0;
+			left: $wth;
+		}
+
+		&[data-num="4"]{
+			background-position: $wth * -4 0;
+			left: $wth;
+		}
+
+		&[data-num="5"]{
+			background-position: 0 0; // this is a duplicate of li[data-num="0"] used for a seamless TweenMax loop
+			left: $wth;
+		}
+	}
+
+	.darken{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: black;
+		@include opacity(0);
+	}
+}*/
+
+/*.slider-controls{
+	display: none;
+	z-index: 500;
+	position: absolute;
+	width: 110px;
+	height: 30px;
+	background-color: white;
+	border: 1px solid lighten($lytGray, 10%);
+	list-style-type: none;
+	padding: 5px;
+	margin: 0 0 0 50%;
+	left: -60px;
+	bottom: 30px;
+	overflow: hidden;
+	@include border-radius(5px);
+	@include box-shadow(0 0 20px 0 rgba(0, 0, 0, 0.15));
+	behavior: url(css3pie/PIE.htc);
+
+	.selector-overlay{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: {
+			image: url(../img/transparent-sprite.png);
+			repeat: no-repeat;
+			position: 0 -305px;
+		}
+	}
+
+	.selector-bullet{
+		position: absolute;
+		left: 5px;
+		width: 20px;
+		height: 100%;
+		background-color: black;
+	}
+
+	li{
+		display: inline-block;
+		cursor: pointer;
+		width: 9px;
+		height: 9px;
+		border: 1px solid $lytGray;
+		margin: 5px;
+		@include border-radius(50%);
+		behavior: url(css3pie/PIE.htc);
+
+		&[data-num="0"]{
+			background-color: black;
+		}
+	}
+}*/
+
+// ----------------------------------------
+
+.chef-container{
+
+	$hgt: 300px;
+
+	z-index: 300;
+	position: relative;
+	width: 940px;
+	height: $hgt;
+
+	&.loading:after{
+		@include pseudo;
+		background: {
+			color: white;
+			image: url(../img/loader.gif);
+			position: center center;
+			repeat: no-repeat;
+		}
+		height: 100%;
+		left: 0;
+		opacity: 0.8;
+		pointer-events: none;
+		top: 0;
+		width: 100%;
+	}
+
+	.scroll-container{
+		overflow-x: scroll;
+		overflow-y: hidden;
+	}
+
+	ul{
+		position: relative;
+		list-style-type: none;
+		margin: 0 auto 0 auto;
+		padding: 0 235px 0 235px;
+		height: $hgt;
+		overflow: hidden;
+	}
+
+	li{
+		// display: inline-block;
+		position: relative;
+		cursor: pointer;
+		float: left;
+		overflow: hidden;
+		width: 235px;
+		height: $hgt;
+		margin: 0;
+		padding: $padS $padS 0 $padS;
+		text-align: center;
+
+		.gradient{
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 50%;
+			@include background-image(linear-gradient(bottom, white, rgba(white, 0)));
+		}
+
+		/* &[data-sprite="cervena-venison"] .image{
+			background-position: (0 * 195px) center;
+		}
+
+		&[data-sprite="silere"] .image{
+			background-position: (-1 * 195px) center;
+		}
+
+		&[data-sprite="angus"] .image{
+			background-position: (-2 * 195px) center;
+		}
+
+		&[data-sprite="hereford"] .image{
+			background-position: (-3 * 195px) center;
+		}
+
+		&[data-sprite="reserve"] .image{
+			background-position: (-4 * 195px) center;
+		}
+
+		&[data-sprite="sff-beef"] .image{
+			background-position: (-5 * 195px) center;
+		}
+
+		&[data-sprite="sff-venison"] .image{
+			background-position: (-6 * 195px) center;
+		}
+
+		&[data-sprite="sff-lamb"] .image{
+			background-position: (-7 * 195px) center;
+		} */
+
+		img{
+			position: relative;
+			width: 100px;
+			height: 100px;
+			border: 2px solid white;
+			@include border-radius(50%);
+			@include box-shadow(0 5px 15px 0 rgba(0, 0, 0, 0.25));
+			behavior: url(css3pie/PIE.htc);
+		}
+
+		/*.image{
+			position: relative;
+			left: 50px;
+			width: 100px;
+			height: 100px;
+			border: 2px solid white;
+			background: {
+				image: url(../img/sketch-sprite-small.png);
+				repeat: no-repeat;
+			}
+			@include border-radius(50%);
+			@include box-shadow(0 5px 15px 0 rgba(0, 0, 0, 0.5));
+			behavior: url(css3pie/PIE.htc);
+		}*/
+
+		/* .image{
+			position: relative;
+			//left: 50px;
+			width: 100%;
+			height: 100px;
+			background: {
+				image: url(../img/sketch-sprite-small.png);
+				repeat: no-repeat;
+			}
+		} */
+
+		.shadow{
+			z-index: 1;
+			position: absolute;
+			top: 105px;
+			left: 50%;
+			margin: 0 0 0 -70px;
+			width: 140px;
+			height: 30px;
+			background: {
+				image: url(../img/transparent-sprite.png);
+				repeat: no-repeat;
+				position: -820px 0;
+				//color: red;
+			}
+			@include opacity(0.5);
+		}
+
+		h3{
+			color: $gold;
+			padding: $padS 0 15px 0;
+		}
+
+		h4{
+			font-family: "Roboto Slab", serif;
+			padding: 0 0 15px 0;
+		}
+	}
+}
+
+.scroll{
+	z-index: 50;
+	position: absolute;
+	width: $padB;
+	height: 100%;
+	//pointer-events: none;
+
+	.gradient{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.rnd-btn{
+		position: absolute;
+		top: 50%;
+		margin: (- $padB / 2) 0 0 0;	
+	}
+
+	&[data-dir="left"]{
+		left: 0;
+
+		.gradient{
+			@include background-image(linear-gradient(left, white, rgba(white, 0)));
+		}
+
+		.rnd-btn{
+			left: 10px;
+			background-position: 0 -125px;
+			@include box-shadow(7px 7px 15px 0 rgba(0, 0, 0, 0.35));
+		}
+	}
+
+	&[data-dir="right"]{
+		right: 0;
+
+		.gradient{
+			@include background-image(linear-gradient(right, white, rgba(white, 0)));
+		}
+
+		.rnd-btn{
+			right: 10px;
+			background-position: -50px -125px;
+			@include box-shadow(-7px 7px 15px 0 rgba(0, 0, 0, 0.35));
+		}
+	}
+}
+
+#competition{
+	$rad: 10px;
+	background: {
+		image: url(../img/competition-texture.jpg);
+		position: center center;
+		size: contain;
+	}
+	border: 1px solid $gold;
+	@include border-radius($rad);
+	display: inline-block;
+	margin: 50px 50px 80px 50px;
+	padding: 40px;
+	position: relative;
+	width: 840px;
+	text: {
+		align: center;
+		decoration: none;
+	}
+	behavior: url(css3pie/PIE.htc);
+
+	&:before{
+		z-index: -1;
+		@include pseudo;
+		width: 100%;
+		height: 20px;
+		top: 100%;
+		left: 0;
+		background: {
+			image: url(../img/transparent-sprite.png);
+			repeat: no-repeat;
+			position: 0 -185px;
+		}		
+	}
+
+	.title{
+		color: $drkGray;
+		font: {
+			family: "Yeseva One", cursive;
+			weight: 400;
+			size: 36px;
+			style: italic;
+		}
+		margin: 0;
+		padding: 0 0 $padS 0;
+		text-transform:uppercase;
+	}
+
+	.divider{
+		$wth: 650;
+		background-color: $lytGray;
+		height: 1px;
+		width: $wth + px;
+		margin-bottom: $padS;
+		margin-left: 55px;
+	}
+
+	.cta{
+		color: $gold;
+		font: {
+			family: "Roboto Slab", serif;
+			//weight: 300;
+			size: 30px;
+			//style: normal;
+		}
+		letter-spacing: 1px;
+
+		.enter{ color: $drkGray; }
+	}
+}
+
+// ----------------------------------------
+
+footer{
+	position: relative;
+	margin: $padB 0 0 0;
+	padding: (80px) $padB $padB $padB;
+	text-align: center;
+
+	&:after{
+		@include pseudo;
+		background: {
+			image: url(../img/sff-awards-logo.png);
+			repeat: no-repeat;
+			position: center center;
+		}
+		height: 80px;
+		left: 0;
+		top: 0;
+		width: 100%;	
+	}
+
+	ul{
+		position: relative;
+		list-style-type: none;
+		margin: $padB 0 0 0;
+		padding: 0;
+		border-top: 1px solid $drkGray;
+		font-size: 14px;
+
+		li{
+			top: 0;
+			width: 50%;
+			float: left;
+			//display: inline-block;
+
+			&.left{
+				padding: $padS $padS 0 0;
+				text-align: right;
+
+				a{
+					text-decoration: none;
+					color: $drkGray;
+				}
+			}
+
+			&.right{
+				padding: $padS 0 0 $padS;
+				text-align: left;
+			}
+		}
+	}
+}
+
+// ----------------------------------------
+// IE8 border raduis fix for pseudo elements where css3Pie does not work...
+
+.no-borderradius{
+
+	.region-list{
+
+		li{
+
+			&:before{
+				background: {
+					image: url(../img/generic-sprite.jpg);
+					position: -25px -1090px;
+					repeat: no-repeat;
+				}
+				border: none !important;
+			}
+		}
+	}
+
+	.data{
+
+		.image{
+
+			&:after{
+				background: {
+					image: url(../img/generic-sprite.jpg);
+					position: 0 -1090px;
+					repeat: no-repeat;
+				}
+				border: none !important;
+			}
+		}
+
+		.bullet{
+
+			&:before{
+				background: {
+					image: url(../img/generic-sprite.jpg);
+					position: -25px -1090px;
+					repeat: no-repeat;
+				}
+				border: none !important;
+			}
+		}
+	}
+}
+
+// ----------------------------------------
+
+.lt-ie9{
+
+	.image-container .selector{
+		display: none
+	}
+
+	/* .slider-container{
+
+		&:after{
+			z-index: 100000;
+			background: {
+				image: url(../img/ie8-slider-footer.png) !important;
+				position: 0 0 !important;
+			}
+		}
+	} */
+
+	.slider-controls{
+		//display: none; // hides the slider for IE8 as TweenMax does not tween the current bullet into the right position during the timeline animation
+	}
+
+	.chef-container{
+
+		.scroll{
+			pointer-events: auto !important;
+		}
+
+		li{
+
+			.shadow{
+				display: none;
+			}
+		}
+	}
+
+	.modal{
+		background: {
+			image: url(../img/trans-pix-95per.png);
+			repeat: repeat !important;
+		}
+	}
+}
+
+// ----------------------------------------
+
+.no-cssgradients{
+
+	ul.finalists-container{
+
+		li.nominee{
+
+			.copy-block{
+
+				.gradient{
+					background: {
+						image: url(../img/gradient-sprite.png) !important;
+						position: -100px -250px !important;
+						repeat: no-repeat !important;
+					}
+				}
+
+			}
+		}
+	}
+
+	.chef-container{
+
+		li{
+
+			.gradient{
+				background: {
+					image: url(../img/gradient-sprite.png) !important;
+					position: -100px 0 !important;
+					repeat: no-repeat !important;
+				}
+			}
+		}
+	}
+
+	.scroll{
+
+		.gradient{
+			background: {
+				image: url(../img/gradient-sprite.png) !important;
+				repeat: no-repeat !important;
+			}
+		}
+
+		&[data-dir="left"] .gradient{
+			background-position: 0 0 !important;
+		}
+
+		&[data-dir="right"] .gradient{
+			background-position: -50px 0 !important;
+		}
+	}
+
+	.modal{
+
+		.top-fade, .bottom-fade{
+			background: {
+				image: url(../img/gradient-sprite.png) !important;
+				repeat: no-repeat !important;
+			}
+		}
+
+		.top-fade{
+			background-position: 0 -300px !important;
+		}
+
+		.bottom-fade{
+			background-position: 0 -450px !important;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
