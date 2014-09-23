@@ -137,7 +137,7 @@
             <div class="intro-container">
                 <h5 class="underline">entrants</h5>
 
-                <p class="description">To enter, chefs created an original dish using one of our finest Silver Fern Farms lamb, beef and venison or SILERE alpine origin merino cuts. Their dishes will be on menu from <span class="gold">22 September to 31 October 2014</span>. During this period a team of esteemed food critics overseen by judging coordinator Kerry Tyack will be judging the dishes and from here will announce 10 regional finalists at the beginning of November.</p>
+                <p class="description">To enter, chefs created an original dish using one of our finest Silver Fern Farms lamb, beef, venison or SILERE alpine origin merino cuts. Their dishes will be on menu from <span class="gold">22 September to 31 October 2014</span>. During this period a team of esteemed food critics overseen by judging coordinator Kerry Tyack will be judging the dishes and from here will announce 10 regional finalists at the beginning of November.</p>
 
                 <ul class="call-to-action">
                     <li class="question"><strong>Who will be awarded the title of New Zealand’s Premier Master of Fine Cuisine?</strong></li>
@@ -180,7 +180,7 @@
 
             </div> <!-- end of map-container -->
 
-            <div class="chef-container">
+            <div class="chef-container loading">
                 <div class="scroll" data-dir="left">
                     <div class="gradient"></div> <!-- set as DOM element and not pseudo element due to IE8 -->
                     <div class="rnd-btn"></div>                    
