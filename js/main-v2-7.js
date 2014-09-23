@@ -21,6 +21,7 @@ $(document).ready(function(){
 
 				$m.s.ltIe9 = $m.ltIe9();
 				$m.regions.init(); // create the map shapes + add interactivity animations for the map and region list...
+				$m.regions.actions.onclick(0);
 				$m.inputType.listeners.mouse();
 				$m.chefs.init();
 				$m.modal.init();
@@ -441,6 +442,11 @@ $(document).ready(function(){
 					$m.regions.listeners.map($map, $rm, $rl, $li, $lnd, $i, $ani); // Raphael listeners...
 					$m.regions.listeners.list($rm, $rl, $li, $lnd, $i, $ani); // jQuery listeners...
 
+					if($i === 0){
+						console.log('set up initial map selection');
+						$m.regions.actions.onmouseleave($rm, $rl, $i, $lnd, $ani, 0);
+					} // end of statement
+
 				} // end of for loop
 
 			}, // end of init fnc
@@ -510,7 +516,7 @@ $(document).ready(function(){
 
 					$m.chefs.popData($i); // populate the chef section with data from the selected region...
 
-					if($m.s.$ltIe9){ // change to if($m.s.$ltIe9){
+					if($m.s.$ltIe9){
 
 						$('.chef-container')
 							.find('ul')
@@ -538,9 +544,12 @@ $(document).ready(function(){
 
 				}, // end of onclick
 
-				onmouseleave : function($rm, $rl, $i, $lnd, $ani){
+				onmouseleave : function($rm, $rl, $i, $lnd, $ani, $atvReg){
 
-					var $atvReg = $m.s.atvReg;
+					if(isNaN($atvReg)){
+						// console.log('setting active region');
+						$atvReg = $m.s.atvReg;
+					}
 			
 					// set DORMANT states...
 					//TweenMax.to($lnd, $ani, {'opacity' : '0'}); // ALL land masses are faded out
@@ -709,112 +718,68 @@ $(document).ready(function(){
 
 		chefs : {
 
-			init : function($i){
+			init : function(){
 
 				var $chfCon = $('.chef-container');
 
-				$m.chefs.popData($i, $chfCon);
+				// $m.chefs.popData($i, $chfCon);
 				$m.chefs.listeners($chfCon);
 
 			}, // end of init fnc
 
-			popData : function($i, $chfCon){
+			popData : function($i){
 
 				var $wth = 0, // the ul width that will be the exact length to hold all of the created chef li's...
 					$li  = '', // shell for housing the list data
 					$ani = $m.s.ani,
+					$chfCon = $('.chef-container'),
 					$json = $m.s.json.entry,
-					$j, $entDat, $regLen, $chfLen, $ran, $ul, $srlCon; // nulls to populate later
-				
-				if(isNaN($i)){ // if $i has not been defined then this is the first time that the chefs are being populated... in that regard chefs ALL regions will reside inside the ul via random population
+					$j, $entDat, $chfLen, $ran, $ul, $srlCon; // nulls to populate later
 
-					$ran = true;
+				$entDat = $json[$i].chefs; // get the data from selected region
 
-				}else{
+				// set non random parameters...
+				$chfLen = $entDat.length; // find the loop length for the entry in the current region
+				$j = 0; // loop will start at the begining of the array
 
-					$ran = false;
 
-				} // end of if statement
+				for($j; $j < $chfLen; $j++){ // loop though the region data and populate the li...
 
-				$m.s.modal.random = $ran;
+					$li +=  '<li data-region="' + $i + '" data-chef="' + $j + '">' + // open li element
+							'<div class="shadow"></div>' +
+							//'<img src="img/_temp-placeholder-.jpg" alt="' + $dat[$j][8] + '">' +
+							//'<div class="image" style="background-position:' + (0 * -100) + 'px 0;"></div>' +
+							// '<div class="image"></div>' +
+							'<img class="image" src="img/entrants/' +  $entDat[$j][14] + '.jpg">' +
+							'<h3>' + $entDat[$j][1] + '</h3>';
 
-				if($ran){ // if $i has not been defined then this is the first time that the chefs are being populated... in that regard chefs ALL regions will reside inside the ul
-					
-					$i = 0; // set $i to zero as chefs in ALL regions will be displayed
-					
-					$regLen = $json.length; // set the region loop length to be = to the anount of regions in the data set
+					if($entDat[$j][5] !== ''){ // if there is A DISH NAME stipulated in the entry data...
 
-				}else{ // if $i has been defined then we will populate teh chefs from the used selected region... $i will = the region array reference with the loop length being $i + 1 so that it will run only once
+						$li +=  '<h4>' + $entDat[$j][5] + '</h4>';
 
-					$chfCon = $('.chef-container'); // set the DOM reference as it will not be pulled though from the init()
-					
-					$regLen = $i + 1; // set the region loop length to run the loop only ONCE!
+					}else{ // if there is NO DISH NAME stipulated in the entry data...
 
-					/*$('.modal')
-						.find('.buttons')
-						.find('.direction')
-						.css({'display' : 'block'});*/
-
-				} // end of if statement
-
-				// the chef population for the ul is based on two for loops... the first one based on looping $i is for the initial load when we populate the ul with chefs from ALL regions in the ul
-				// in that regard we start at zero and loop though each region set in the array
-				// if there is only a single specific region set to loop though $i will = the region array reference with the loop length being $i + 1 so that it will run only once
-				for($i; $i < $regLen; $i++){
-
-					$entDat = $json[$i].chefs; // get the data from selected region
-
-					// set non random parameters...
-					$chfLen = $entDat.length; // find the loop length for the entry in the current region
-					$j = 0; // loop will start at the begining of the array
-
-					if($ran){
-
-						$j = $m.chefs.randomNum(0, ($chfLen - 2)); // loop will start at the begining of the array
-						$chfLen = $j + 2;
+						$li +=  '<h4>' + $entDat[$j][7] + '</h4>'; // then subsitute the description for the cut name
 
 					} // end of if statement
 
-					//console.log('$dat = ' + $dat);
+					if($entDat[$j][8] !== ''){ // if there is A DESCRIPTION stipulated in the entry data...
 
-					for($j; $j < $chfLen; $j++){ // loop though the region data and populate the li...
+						$li +=  '<span>' + $entDat[$j][8] + '</span>';
 
-						$li +=  '<li data-region="' + $i + '" data-chef="' + $j + '">' + // open li element
-								'<div class="shadow"></div>' +
-								//'<img src="img/_temp-placeholder-.jpg" alt="' + $dat[$j][8] + '">' +
-								//'<div class="image" style="background-position:' + (0 * -100) + 'px 0;"></div>' +
-								// '<div class="image"></div>' +
-								'<img class="image" src="img/entrants/' +  $entDat[$j][14] + '.jpg">' +
-								'<h3>' + $entDat[$j][1] + '</h3>';
+					}else{ // if there is NO DESCRIPTION stipulated in the entry data...
 
-						if($entDat[$j][5] !== ''){ // if there is A DISH NAME stipulated in the entry data...
+						// $li +=  '<span>' + $entDat[$j][1] + ' ' + $entDat[$j][2] + '</span>'; // then subsitute the description for the chef name
 
-							$li +=  '<h4>' + $entDat[$j][5] + '</h4>';
+					} // end of if statement
 
-						}else{ // if there is NO DISH NAME stipulated in the entry data...
+					$li +=  '<div class="gradient"></div>' + // set as DOM element and not pseudo element due to IE8
+							'</li>'; // close li element
 
-							$li +=  '<h4>' + $entDat[$j][7] + '</h4>'; // then subsitute the description for the cut name
-
-						} // end of if statement
-
-						if($entDat[$j][8] !== ''){ // if there is A DESCRIPTION stipulated in the entry data...
-
-							$li +=  '<span>' + $entDat[$j][8] + '</span>';
-
-						}else{ // if there is NO DESCRIPTION stipulated in the entry data...
-
-							// $li +=  '<span>' + $entDat[$j][1] + ' ' + $entDat[$j][2] + '</span>'; // then subsitute the description for the chef name
-
-						} // end of if statement
-
-						$li +=  '<div class="gradient"></div>' + // set as DOM element and not pseudo element due to IE8
-								'</li>'; // close li element
-
-						$wth++; // +1 onto the ul width as the li counter increases during the two loop sequences...
-
-					} // end of for loop
+					$wth++; // +1 onto the ul width as the li counter increases during the two loop sequences...
 
 				} // end of for loop
+
 
 				$wth = ($wth + 2) * 235; // find the new width of the ul by multiplying the li width (235px) be the ammount of li
 
